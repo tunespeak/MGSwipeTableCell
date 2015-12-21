@@ -74,7 +74,7 @@
         maxSize.height = MAX(maxSize.height, button.bounds.size.height);
     }
     
-    if (self = [super initWithFrame:CGRectMake(0, 0, containerWidth, maxSize.height)]) {
+    if (self = [super initWithFrame:CGRectMake(0, 0, maxSize.width, maxSize.height)]) {
         _fromLeft = direction == MGSwipeDirectionLeftToRight;
         _container = [[UIView alloc] initWithFrame:self.bounds];
         _container.clipsToBounds = YES;
