@@ -66,16 +66,12 @@
 
 -(instancetype) initWithButtons:(NSArray*) buttonsArray direction:(MGSwipeDirection) direction differentWidth:(BOOL) differentWidth
 {
-    CGFloat containerWidth = 0;
+
     CGSize maxSize = CGSizeZero;
 
     for (UIView * button in buttonsArray) {
-        containerWidth += button.bounds.size.width;
-        maxSize.width = MAX(maxSize.width, button.bounds.size.width);
+        maxSize.width += button.bounds.size.width;
         maxSize.height = MAX(maxSize.height, button.bounds.size.height);
-    }
-    if (!differentWidth) {
-        containerWidth = maxSize.width * buttonsArray.count;
     }
     
     if (self = [super initWithFrame:CGRectMake(0, 0, containerWidth, maxSize.height)]) {
@@ -91,9 +87,7 @@
                 [btn removeTarget:nil action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchUpInside]; //Remove all targets to avoid problems with reused buttons among many cells
                 [btn addTarget:self action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchUpInside];
             }
-            if (!differentWidth) {
-                button.frame = CGRectMake(0, 0, maxSize.width, maxSize.height);
-            }
+
             button.autoresizingMask = UIViewAutoresizingFlexibleHeight;
             [_container insertSubview:button atIndex: _fromLeft ? 0: _container.subviews.count];
         }
