@@ -684,7 +684,8 @@ static inline CGFloat mgEaseInOutBounce(CGFloat t, CGFloat b, CGFloat c) {
         _rightView = [[MGSwipeButtonsView alloc] initWithButtons:_rightButtons direction:MGSwipeDirectionRightToLeft differentWidth:_allowsButtonsWithDifferentWidth];
         _rightView.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleHeight;
         _rightView.cell = self;
-        _rightView.frame = CGRectMake(_swipeOverlay.bounds.size.width, 0, _rightView.bounds.size.width, _swipeOverlay.bounds.size.height);
+        //_rightView.frame = CGRectMake(_swipeOverlay.bounds.size.width, 0, _rightView.bounds.size.width, _swipeOverlay.bounds.size.height);
+        _rightView.frame = CGRectMake(_swipeOverlay.bounds.size.width, 5, _rightView.bounds.size.width, _swipeOverlay.bounds.size.height - 5);
         [_swipeOverlay addSubview:_rightView];
     }
 }
