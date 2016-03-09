@@ -677,18 +677,18 @@ static inline CGFloat mgEaseInOutBounce(CGFloat t, CGFloat b, CGFloat c) {
         _leftView = [[MGSwipeButtonsView alloc] initWithButtons:_leftButtons direction:MGSwipeDirectionLeftToRight differentWidth:_allowsButtonsWithDifferentWidth];
         _leftView.autoresizingMask = UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleHeight;
         _leftView.cell = self;
-        //_leftView.frame = CGRectMake(-_leftView.bounds.size.width, 0, _leftView.bounds.size.width, _swipeOverlay.bounds.size.height);
+        _leftView.frame = CGRectMake(-_leftView.bounds.size.width, 0, _leftView.bounds.size.width, _swipeOverlay.bounds.size.height);
         // Note: Tunespeak addition for cell padding
-        _leftView.frame = CGRectMake(-_leftView.bounds.size.width, 2.5, _leftView.bounds.size.width, _swipeOverlay.bounds.size.height - 2.5);
+        //_leftView.frame = CGRectMake(-_leftView.bounds.size.width, 2.5, _leftView.bounds.size.width, _swipeOverlay.bounds.size.height - 2.5);
         [_swipeOverlay addSubview:_leftView];
     }
     if (!_rightView && _rightButtons.count > 0) {
         _rightView = [[MGSwipeButtonsView alloc] initWithButtons:_rightButtons direction:MGSwipeDirectionRightToLeft differentWidth:_allowsButtonsWithDifferentWidth];
         _rightView.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleHeight;
         _rightView.cell = self;
-        //_rightView.frame = CGRectMake(_swipeOverlay.bounds.size.width, 0, _rightView.bounds.size.width, _swipeOverlay.bounds.size.height);
+        _rightView.frame = CGRectMake(_swipeOverlay.bounds.size.width, 0, _rightView.bounds.size.width, _swipeOverlay.bounds.size.height);
         // Note: Tunespeak addition for cell padding
-        _rightView.frame = CGRectMake(_swipeOverlay.bounds.size.width, 2.5, _rightView.bounds.size.width, _swipeOverlay.bounds.size.height - 2.5);
+        //_rightView.frame = CGRectMake(_swipeOverlay.bounds.size.width, 2.5, _rightView.bounds.size.width, _swipeOverlay.bounds.size.height - 2.5);
         [_swipeOverlay addSubview:_rightView];
     }
 }
