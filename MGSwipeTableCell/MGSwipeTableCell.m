@@ -1151,8 +1151,8 @@ static inline CGFloat mgEaseInOutBounce(CGFloat t, CGFloat b, CGFloat c) {
     }
     else if (gesture.state == UIGestureRecognizerStateChanged) {
         // Note: Comment out these two lines to disallow the cell to stretch
-        //CGFloat offset = _panStartOffset + current.x - _panStartPoint.x;
-        //self.swipeOffset = [self filterSwipe:offset];
+        CGFloat offset = _panStartOffset + current.x - _panStartPoint.x;
+        self.swipeOffset = [self filterSwipe:offset];
     }
     else {
         MGSwipeButtonsView * expansion = _activeExpansion;
