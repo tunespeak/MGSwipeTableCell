@@ -234,6 +234,10 @@ typedef NS_ENUM(NSInteger, MGSwipeEasingFunction) {
 @property (nonatomic, strong) UIColor * swipeBackgroundColor;
 /** Property to read or change the current swipe offset programmatically */
 @property (nonatomic, assign) CGFloat swipeOffset;
+/** Property to read or change whether the left swipe view can stretch programmatically */
+@property (nonatomic, assign) BOOL allowLeftViewToStretch;
+/** Property to read or change whether the right swipe view can stretch programmatically */
+@property (nonatomic, assign) BOOL allowRightViewToStretch;
 
 /** Utility methods to show or hide swipe buttons programmatically */
 -(void) hideSwipeAnimated: (BOOL) animated;

@@ -973,6 +973,7 @@ static inline CGFloat mgEaseInOutBounce(CGFloat t, CGFloat b, CGFloat c) {
 
         if (view != activeButtons) continue; //only transition if active (perf. improvement)
         bool expand = expansions[i].buttonIndex >= 0 && offset > view.bounds.size.width * expansions[i].threshold;
+        
         if (expand) {
             [view expandToOffset:offset settings:expansions[i]];
             _targetOffset = expansions[i].fillOnTrigger ? self.bounds.size.width * sign : 0;
@@ -1126,6 +1127,7 @@ static inline CGFloat mgEaseInOutBounce(CGFloat t, CGFloat b, CGFloat c) {
     if (!buttons || ! allowed) {
         offset = 0;
     }
+
     return offset;
 }
 
@@ -1152,7 +1154,27 @@ static inline CGFloat mgEaseInOutBounce(CGFloat t, CGFloat b, CGFloat c) {
     else if (gesture.state == UIGestureRecognizerStateChanged) {
         // Note: Comment out these two lines to disallow the cell to stretch
         CGFloat offset = _panStartOffset + current.x - _panStartPoint.x;
-        self.swipeOffset = [self filterSwipe:offset];
+        BOOL isLeftView = (offset > 0);
+        BOOL isRightView = (offset < 0);
+        
+        // Tunespeak Addition: Code that makes the cell not stretch past a certain limit
+        if (isLeftView && !_allowLeftViewToStretch) {
+            CGFloat leftViewWidth = _leftView.bounds.size.width;
+            if (offset > leftViewWidth) {
+                self.swipeOffset = [self filterSwipe:leftViewWidth];
+            } else {
+                self.swipeOffset = [self filterSwipe:offset];
+            }
+        } else if (isRightView && !_allowRightViewToStretch) {
+            CGFloat rightViewWidth = _rightView.bounds.size.width;
+            if (offset < -rightViewWidth) {
+                self.swipeOffset = [self filterSwipe:-rightViewWidth];
+            } else {
+                self.swipeOffset = [self filterSwipe:offset];
+            }
+        } else {
+            self.swipeOffset = [self filterSwipe:offset];
+        }
     }
     else {
         MGSwipeButtonsView * expansion = _activeExpansion;
